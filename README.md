@@ -107,23 +107,21 @@ number:
 
 ### Configuration variables
 
-All entries below are *Optional* and accept [Number](https://esphome.io/components/number/) options plus the limits described below.
+- **max_distance** (*Optional*): Maximum detection distance (`rmax`), in meters.
+- **threshold_1** (*Optional*): Legacy shared near threshold (`mth1`).
+- **threshold_2** (*Optional*): Legacy shared middle threshold (`mth2`).
+- **threshold_3** (*Optional*): Legacy shared far threshold (`mth3`).
+- **movement_threshold_1** (*Optional*): Near movement threshold (`mth1_mov`).
+- **movement_threshold_2** (*Optional*): Middle movement threshold (`mth2_mov`).
+- **movement_threshold_3** (*Optional*): Far movement threshold (`mth3_mov`).
+- **stationary_threshold_1** (*Optional*): Near stationary threshold (`mth1_occ`).
+- **stationary_threshold_2** (*Optional*): Middle stationary threshold (`mth2_occ`).
+- **stationary_threshold_3** (*Optional*): Far stationary threshold (`mth3_occ`).
+- **small_movement_threshold_1** (*Optional*): Near small-movement threshold (`mth1_movs`).
+- **small_movement_threshold_2** (*Optional*): Middle small-movement threshold (`mth2_movs`).
+- **small_movement_threshold_3** (*Optional*): Far small-movement threshold (`mth3_movs`).
 
-| Option | Radar setting |
-| --- | --- |
-| **max_distance** | Maximum detection distance (`rmax`), in meters. |
-| **threshold_1** | Legacy shared near threshold (`mth1`). |
-| **threshold_2** | Legacy shared middle threshold (`mth2`). |
-| **threshold_3** | Legacy shared far threshold (`mth3`). |
-| **movement_threshold_1** | Near movement threshold (`mth1_mov`). |
-| **movement_threshold_2** | Middle movement threshold (`mth2_mov`). |
-| **movement_threshold_3** | Far movement threshold (`mth3_mov`). |
-| **stationary_threshold_1** | Near stationary threshold (`mth1_occ`). |
-| **stationary_threshold_2** | Middle stationary threshold (`mth2_occ`). |
-| **stationary_threshold_3** | Far stationary threshold (`mth3_occ`). |
-| **small_movement_threshold_1** | Near small-movement threshold (`mth1_movs`). |
-| **small_movement_threshold_2** | Middle small-movement threshold (`mth2_movs`). |
-| **small_movement_threshold_3** | Far small-movement threshold (`mth3_movs`). |
+Each accepts all options from [Number](https://esphome.io/components/number/), plus the limits described above.
 
 Bands 1, 2 and 3 cover below 2.8 m, 2.8–8 m and above 8 m respectively. Larger thresholds reduce sensitivity.
 
