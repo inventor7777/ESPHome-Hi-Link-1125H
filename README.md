@@ -2,7 +2,7 @@
 
 The `hi_link_ld1125h` component connects a Hi-Link LD1125H-compatible radar to ESPHome over UART. It supports movement, stationary presence and firmware-dependent configuration commands. Tested on the radar in the Govee H5127.
 
-## Component/Hub
+# Component/Hub
 
 Configure a transmit and receive UART at **115200 baud, 8 data bits, no parity, 1 stop bit**. The pins below are the H5127 assignments; change them for your board.
 
@@ -36,7 +36,7 @@ esphome:
       - -DPIN_SERIAL0_RX=13
 ```
 
-## Binary Sensor
+# Binary Sensor
 
 Detection reports produce pulses rather than a persistent occupied state. Use `delayed_off` to hold detection between reports.
 
@@ -65,7 +65,7 @@ binary_sensor:
 
 Each accepts all options from [Binary Sensor](https://esphome.io/components/binary_sensor/). No hold filter is added automatically.
 
-## Sensor
+# Sensor
 
 ```yaml
 sensor:
@@ -87,7 +87,7 @@ sensor:
 
 Each accepts all options from [Sensor](https://esphome.io/components/sensor/). Reports are not throttled automatically; the example limits publishing to once per second.
 
-## Number
+# Number
 
 Number entities read and adjust the radar's settings. Firmware revisions expose different threshold sets; unsupported settings remain unknown. Configure the keys returned by your radar's `get_all` response.
 
@@ -136,7 +136,7 @@ Distance limits must be within `0`–`60`, in `0.1` m increments. Threshold limi
 
 Changes through number entities automatically send `save` to persist the setting.
 
-## Switch
+# Switch
 
 ```yaml
 switch:
@@ -152,7 +152,7 @@ switch:
 
 User changes automatically send `save`. Applying the startup restore state does not save it to the radar's flash.
 
-## Button
+# Button
 
 ```yaml
 button:
@@ -176,7 +176,7 @@ button:
 
 Each accepts all options from [Button](https://esphome.io/components/button/).
 
-## Text Sensor
+# Text Sensor
 
 ```yaml
 text_sensor:
