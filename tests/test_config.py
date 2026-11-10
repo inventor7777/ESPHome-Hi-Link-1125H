@@ -1,6 +1,7 @@
 """Run with ESPHome's Python environment: python tests/test_config.py."""
 
-import importlib.util
+import importlib
+import sys
 from pathlib import Path
 import unittest
 
@@ -8,10 +9,9 @@ from esphome import config_validation as cv
 from esphome.core import CORE
 
 
-SOURCE = Path(__file__).resolve().parents[1] / "components/hi_link_ld1125h/__init__.py"
-spec = importlib.util.spec_from_file_location("hi_link_ld1125h", SOURCE)
-component = importlib.util.module_from_spec(spec)
-spec.loader.exec_module(component)
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "components"))
+component = importlib.import_module("hi_link_ld1125h.number")
+switch_platform = importlib.import_module("hi_link_ld1125h.switch")
 
 
 class ConfigurationTests(unittest.TestCase):
@@ -36,13 +36,13 @@ class ConfigurationTests(unittest.TestCase):
                 component.validate_limits({"max_distance": {"min_value": minimum, "max_value": 8}})
 
     def test_restore_modes(self):
-        for mode in (None, *component.switch.RESTORE_MODES):
+        for mode in (None, *switch_platform.switch.RESTORE_MODES):
             CORE.reset()
             switch = {"name": "Test Mode"}
             if mode is not None:
                 switch["restore_mode"] = mode
             with self.subTest(mode=mode):
-                config = component.CONFIG_SCHEMA({"test_mode": switch})
+                config = switch_platform.CONFIG_SCHEMA({"test_mode": switch})
                 self.assertEqual(str(config["test_mode"]["restore_mode"]), mode or "ALWAYS_OFF")
 
 
